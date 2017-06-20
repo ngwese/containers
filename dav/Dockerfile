@@ -9,8 +9,10 @@ MAINTAINER Greg Wuller <greg@afofo.com>
 RUN apk --no-cache add apache2=2.4.25-r1 apache2-utils=2.4.25-r1 apache2-webdav=2.4.25-r1 dumb-init && \
   mkdir -pv /run/apache2
 
-ADD root /
+# copy over apache configuration
+COPY root /
 
+# prepare /dav directory used by webdav.conf
 RUN mkdir -p /dav/data && \
     mkdir -p /dav/config && \
     mkdir -p /dav/var && \
