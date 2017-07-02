@@ -18,17 +18,18 @@ COPY root /
 
 # prepare /dav directory used by webdav.conf
 RUN mkdir -p /dav/data && \
-    mkdir -p /dav/config && \
+    mkdir -p /dav/secret && \
     mkdir -p /dav/var && \
     chown -R apache:apache /dav
 
 VOLUME /dav/data
+VOLUME /dav/secret
 
-COPY dav.passwd /dav/config/dav.passwd
-COPY server.crt server.csr server.key /etc/apache2/
+#COPY secret/dav.passwd /dav/secret/dav.passwd
+#COPY secret/server.crt secret/server.csr secret/server.key /dav/secret/
 
 EXPOSE 443
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY run.sh /usr/local/bin/run.sh
 
-CMD ["entrypoint.sh"]
+CMD ["run.sh"]

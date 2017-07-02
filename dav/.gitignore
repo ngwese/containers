@@ -1,3 +1,2 @@
-dav.passwd
-server.*
-blip-conf
+secret/*
+data/*
