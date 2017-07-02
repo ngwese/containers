@@ -1,8 +1,8 @@
 build:
-	docker build  -t ngwese/dav .
+	docker build -t afofo/dav .
 	
 run:
-	docker run -d -p 8080:80 -p 8443:443 --rm --name dav ngwese/dav
+	docker run -d -p 8443:443 --rm --name dav afofo/dav
 	
 kill:
 	docker kill dav
