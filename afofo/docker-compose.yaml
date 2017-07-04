@@ -1,0 +1,16 @@
+version: '2'
+services:
+  front:
+    build: .
+    ports:
+     - "80:80"
+     - "443:443"
+  site:
+    image: "afofo/site"
+  #dav:
+  #  image: "afofo/dav"
+  #  ports: 
+  #    - "8443:443"
+  #  volumes:
+  #    -
+  #    -
