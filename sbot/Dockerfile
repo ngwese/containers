@@ -11,15 +11,21 @@ RUN apt-get install -y autotools-dev automake libsodium-dev
 #RUN npm install --unsafe-perm -g leveldown
 RUN npm install --unsafe-perm -g scuttlebot
 
+RUN apt-get remove -y autotools-dev automake
+
 COPY run-sbot.sh /
 
 RUN mkdir -pv /sbot/data && \
   chown -Rv node:node /sbot/data && \
-  ln -s /sbot/data /home/node/.ssb
+  ln -s /sbot/data /root/.ssb
 VOLUME /sbot/data
 
-USER node
-WORKDIR /home/node
+# Running as node creates problems accessing the data in the volume since it is
+# mounted as root :( and the underlying uid/gid don't and typically won't match
+# the uid/gid of the 'node' user in this container 
+
+#USER node
+#WORKDIR /home/node
 
 EXPOSE 8007 8008
 

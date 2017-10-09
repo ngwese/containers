@@ -10,4 +10,7 @@ kill:
 sh:
 	docker exec -t -i sbot /bin/bash
 	
-.PHONY: build run sh
+dist: build
+	docker save -o afofo-sbot.tar afofo/sbot
+	
+.PHONY: build run sh dist
