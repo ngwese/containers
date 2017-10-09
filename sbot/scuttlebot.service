@@ -1,0 +1,13 @@
+[Unit]
+Description=sbot                                                                                                                                        
+[Service]
+ExecStart=/usr/bin/sbot server --host pub.afofo.com
+Restart=on-failure
+ReadWriteDirectories=/home/ssb/.ssb
+User=ssb
+StandardOutput=null
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
